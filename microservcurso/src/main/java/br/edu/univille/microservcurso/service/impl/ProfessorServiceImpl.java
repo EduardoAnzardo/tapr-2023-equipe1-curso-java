@@ -24,7 +24,49 @@ public class ProfessorServiceImpl implements ProfessorService{
         iterador.forEach(listaProfessores::add);
 
         return listaProfessores;
-        
     }
-    
+
+    @Override
+    public Professor getById(String id) {
+        var professor = repository.findById(id);
+        if(professor.isPresent())
+            return professor.get();
+        return null;
+    }
+
+    @Override
+    public Professor saveNew(Professor professor) {
+	professor.setId(null);
+	return repository.save(professor);
+    }
+
+    @Override
+    public Professor update(String id, Professor professor) {
+	var buscaProfessorAntigo = repository.findById(id);
+	if (buscaProfessorAntigo.isPresent()){
+		var professorAntigo = buscaProfessorAntigo.get();
+
+		//Atualizar cada atributo do objeto antigo 
+		professorAntigo.setId(professor.getId());
+
+		return repository.save(professorAntigo);
+	}
+	return null;
+    }
+
+    @Override
+    public Professor delete(String id) {
+        var buscaProfessor = repository.findById(id);
+        if (buscaProfessor.isPresent()){
+            var professor = buscaProfessor.get();
+
+            repository.delete(professor);
+
+            return professor;
+        }
+        return null;
+    }
 }
+
+    
+
