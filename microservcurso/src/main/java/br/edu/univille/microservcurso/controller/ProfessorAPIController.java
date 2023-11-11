@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.azure.core.annotation.PathParam;
-
 import br.edu.univille.microservcurso.entity.Professor;
 import br.edu.univille.microservcurso.service.ProfessorService;
 
@@ -35,7 +33,7 @@ public class ProfessorAPIController {
             (listaProfessores, HttpStatus.OK);
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Professor> buscarProfessor(@PathParam("id") String id){
+    public ResponseEntity<Professor> buscarProfessor(@PathVariable("id") String id){
         var professor = service.getById(id);
         if(professor == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -4,21 +4,20 @@ GET http://localhost:8080/api/v1/professores
 GET http://localhost:8080/api/v1/professores
 
 ### Buscar professor pelo ID
-GET http://localhost:8080/api/v1/professores/870282f0-bcd3-48b1-9293-a5c5488f7b10
-
+GET http://localhost:8080/api/v1/professores/1
 ### Inserir um novo Professor
 POST http://localhost:8080/api/v1/professores
 Content-Type: application/json
 
 {
   "id": "3",
-  "nome": "Felix",
+  "nome": "Robert",
   "curso": "Engenharia Robotica",
   "turma": "Primeiro Semestre"
 }
 
 ### Atualizar o  Professor
-PUT http://localhost:8080/api/v1/professores/870282f0-bcd3-48b1-9293-a5c5488f7b10
+PUT http://localhost:8080/api/v1/professores/dfa2d187-43fc-4f62-bb7a-edfcef3ef782
 Content-Type: application/json
 
 {
@@ -29,5 +28,5 @@ Content-Type: application/json
 }
 
 ### Remover o Professor
-DELETE  http://localhost:8080/api/v1/professores/870282f0-bcd3-48b1-9293-a5c5488f7b10
+DELETE  http://localhost:8080/api/v1/professores/3
 Content-Type: application/json

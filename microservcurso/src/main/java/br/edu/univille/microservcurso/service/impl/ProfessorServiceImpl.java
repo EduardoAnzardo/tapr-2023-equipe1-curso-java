@@ -48,6 +48,9 @@ public class ProfessorServiceImpl implements ProfessorService{
 
 		//Atualizar cada atributo do objeto antigo 
 		professorAntigo.setId(professor.getId());
+        professorAntigo.setNome(professor.getNome());
+        professorAntigo.setCurso(professor.getCurso());
+        professorAntigo.setTurma(professor.getTurma());
 
 		return repository.save(professorAntigo);
 	}
