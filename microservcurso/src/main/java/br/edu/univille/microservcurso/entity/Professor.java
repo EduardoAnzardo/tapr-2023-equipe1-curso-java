@@ -9,12 +9,16 @@ import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
 @Container(containerName = "professor")
 public class Professor {
     @Id
+    @PartitionKey
     @GeneratedValue
     public String id;
-    @PartitionKey
     public String nome;
     public String curso;
-    public String turma;
+    public String sexo;
+    public String cpf;
+    public String cursoId;
+    public int telefone;
+    public int idade;
     
 
 
@@ -39,11 +43,38 @@ public class Professor {
         this.curso = curso;
     }
 
-    public String getTurma() {
-        return turma;
+    public String getSexo() {
+        return sexo;
     }
-    public void setTurma(String turma) {
-        this.turma = turma;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getCursoId() {
+        return cursoId;
+    }
+    public void setCursoId(String cursoId) {
+        this.cursoId = cursoId;
+    }
+
+    public int getTelefone() {
+        return telefone;
+    }
+    public void setTelefone(int telefone) {
+        this.telefone = telefone;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
 }

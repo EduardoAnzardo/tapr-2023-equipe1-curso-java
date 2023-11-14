@@ -50,7 +50,11 @@ public class ProfessorServiceImpl implements ProfessorService{
 		professorAntigo.setId(professor.getId());
         professorAntigo.setNome(professor.getNome());
         professorAntigo.setCurso(professor.getCurso());
-        professorAntigo.setTurma(professor.getTurma());
+        professorAntigo.setSexo(professor.getSexo());
+        professorAntigo.setCpf(professor.getCpf());
+        professorAntigo.setCursoId(professor.getCursoId());
+        professorAntigo.setTelefone(professor.getTelefone());
+        professorAntigo.setIdade(professor.getIdade());
 
 		return repository.save(professorAntigo);
 	}
