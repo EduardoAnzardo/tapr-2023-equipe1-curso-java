@@ -13,7 +13,12 @@ Content-Type: application/json
   "id": "3",
   "nome": "Robert",
   "curso": "Engenharia Robotica",
-  "turma": "Primeiro Semestre"
+  "sexo": Masculino,
+  "cpf": 400.289.224-20,
+  "cursoId": 140,
+  "telefone": 40028922,
+  "idade": 40
+
 }
 
 ### Atualizar o  Professor
@@ -21,10 +26,14 @@ PUT http://localhost:8080/api/v1/professores/dfa2d187-43fc-4f62-bb7a-edfcef3ef78
 Content-Type: application/json
 
 {
-  "id": "3",
-  "nome": "Leandro",
-  "curso": "Medicina",
-  "turma": "Segundo Semestre"
+  "id": "5",
+  "nome": "Richarlison",
+  "curso": "Engenharia Mecanica",
+  "sexo": Masculino,
+  "cpf": 130.120.920-40,
+  "cursoId": 135,
+  "telefone": 34342305,
+  "idade": 20
 }
 
 ### Remover o Professor
