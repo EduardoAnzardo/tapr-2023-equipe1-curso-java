@@ -10,7 +10,6 @@ POST http://localhost:8080/api/v1/professores
 Content-Type: application/json
 
 {
-  "id": "3",
   "nome": "Robert",
   "curso": "Engenharia Robotica",
   "sexo": "Masculino",
@@ -22,11 +21,10 @@ Content-Type: application/json
 }
 
 ### Atualizar o  Professor
-PUT http://localhost:8080/api/v1/professores/93c661e2-9107-48f5-909f-175c2f93055e
+PUT http://localhost:8080/api/v1/professores/102bd655-8999-4d60-9908-3c75ed92f9ac
 Content-Type: application/json
 
 {
-  "id": "5",
   "nome": "Richarlison",
   "curso": "Engenharia Mecanica",
   "sexo": "Masculino",
