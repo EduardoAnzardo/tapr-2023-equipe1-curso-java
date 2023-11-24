@@ -4,17 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import br.edu.univille.microservcurso.entity.Professor;
 import br.edu.univille.microservcurso.repository.ProfessorRepository;
 import br.edu.univille.microservcurso.service.ProfessorService;
+import io.dapr.client.DaprClient;
+import io.dapr.client.DaprClientBuilder;
 
 @Service
 public class ProfessorServiceImpl implements ProfessorService{
 
     @Autowired
     private ProfessorRepository repository;
+    private DaprClient client = new DaprClientBuilder().build();
+    @Value("${app.component.topic.professor}")
+    private String TOPIC_NAME;
+    @Value("${app.component.service}")
+	private String PUBSUB_NAME;
 
     @Override
     public List<Professor> getAll() {
@@ -36,8 +44,10 @@ public class ProfessorServiceImpl implements ProfessorService{
 
     @Override
     public Professor saveNew(Professor professor) {
-	professor.setId(null);
-	return repository.save(professor);
+	    professor.setId(null);
+        professor = repository.save(professor);
+        publicarAtualizacao(professor);
+	    return professor;
     }
 
     @Override
@@ -47,7 +57,6 @@ public class ProfessorServiceImpl implements ProfessorService{
 		var professorAntigo = buscaProfessorAntigo.get();
 
 		//Atualizar cada atributo do objeto antigo 
-		professorAntigo.setId(professor.getId());
         professorAntigo.setNome(professor.getNome());
         professorAntigo.setCurso(professor.getCurso());
         professorAntigo.setSexo(professor.getSexo());
@@ -56,7 +65,9 @@ public class ProfessorServiceImpl implements ProfessorService{
         professorAntigo.setTelefone(professor.getTelefone());
         professorAntigo.setIdade(professor.getIdade());
 
-		return repository.save(professorAntigo);
+        professorAntigo = repository.save(professorAntigo);
+        publicarAtualizacao(professorAntigo);
+		return professorAntigo;
 	}
 	return null;
     }
@@ -72,6 +83,13 @@ public class ProfessorServiceImpl implements ProfessorService{
             return professor;
         }
         return null;
+    }
+     //método privado para publicar a atualização
+     private void publicarAtualizacao(Professor professor){
+        client.publishEvent(
+					PUBSUB_NAME,
+					TOPIC_NAME,
+					professor).block();
     }
 }
 

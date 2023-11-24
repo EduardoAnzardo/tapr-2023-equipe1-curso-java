@@ -10,8 +10,8 @@ POST http://localhost:8080/api/v1/professores
 Content-Type: application/json
 
 {
-  "nome": "Robert",
-  "curso": "Engenharia Robotica",
+  "nome": "Trollberto",
+  "curso": "Engenharia de Software",
   "sexo": "Masculino",
   "cpf": "400.289.224-20",
   "cursoId": "140",
